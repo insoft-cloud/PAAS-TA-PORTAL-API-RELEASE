@@ -1,5 +1,5 @@
 # PAAS-TA-PORTAL-API-RELEASE
-[중기부용] bosh 2.0 PAAS-TA-PORTAL-API-RELEASE <br>
+[DM프로젝트용] bosh 2.0 PAAS-TA-PORTAL-API-RELEASE <br>
 
 PaaS-TA Portal API Release Configuration
 ---
