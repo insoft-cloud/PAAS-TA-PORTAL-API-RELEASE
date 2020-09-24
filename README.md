@@ -1,6 +1,13 @@
 # PAAS-TA-PORTAL-API-RELEASE
 [DM프로젝트용] bosh 2.0 PAAS-TA-PORTAL-API-RELEASE <br>
 
+Notices
+---
+- paasta-portal-api, paasta-portal-ui 통합
+- Use PAAS-TA-PORTAL-API-RELEASE = v.1.0.0
+- Use PAAS-TA-PORTAL-RELEASE >= v.1.0.1
+<br>
+
 PaaS-TA Portal API Release Configuration
 ---
 - binary_storage : 1 machine
@@ -12,10 +19,12 @@ PaaS-TA Portal API Release Configuration
 - paas-ta-portal-common-api : 1 machine
 - paas-ta-portal-log-api : 1 machine
 - paas-ta-portal-storage-api : 1 machine
+- paas-ta-portal-webuser : 1 machine
+- paas-ta-portal-webadmin : 1 machine
 
 Create PaaS-TA Portal API Release
 ---
-- Download the latest API Release
+- Download the latest PORTAL Release
 ```
 https://github.com/insoft-cloud/PAAS-TA-PORTAL-API-RELEASE.git
 ```
@@ -47,17 +56,21 @@ src
   ├── paas-ta-portal-registration   
   │   └── paas-ta-portal-registration.jar   
   ├── paas-ta-portal-storage-api   
-  │   └── paas-ta-portal-storage-api.jar   
+  │   └── paas-ta-portal-storage-api.jar
+  ├── paas-ta-portal-webuser   
+  │   └── paas-ta-portal-webuser.tar.gz  
+  ├── paas-ta-portal-webadmin   
+  │   └── paas-ta-portal-webadmin.war     
   ├── python   
   │   └── Python-2.7.8.tgz   
   └── swift-all-in-one   
       └── swift-all-in-one.tar.gz
 ```
 
-- Create PaaS-TA Portal API Release
+- Create PaaS-TA Portal Release
 ```
-## <VERSION> :: release version (e.g. 2.1)   
-## <RELEASE_TARBALL_PATH> :: release file path (e.g. /home/ubuntu/workspace/paasta-portal-api-release-<VERSION>.tgz)   
-$ bosh -e <bosh_name> create-release --name=paasta-portal-api-release --sha2 --version=<VERSION> --tarball=<RELEASE_TARBALL_PATH> --force   
+## <VERSION> :: release version (e.g. 1.0.1)   
+## <RELEASE_TARBALL_PATH> :: release file path (e.g. /home/ubuntu/workspace/paasta-portal-release-<VERSION>.tgz)   
+$ bosh -e <bosh_name> create-release --name=paasta-portal-release --sha2 --version=<VERSION> --tarball=<RELEASE_TARBALL_PATH> --force   
 ```
 

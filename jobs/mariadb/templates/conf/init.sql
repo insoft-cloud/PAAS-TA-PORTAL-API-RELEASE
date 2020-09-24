@@ -1,24 +1,38 @@
 UPDATE mysql.user SET password=PASSWORD('<%= p("mariadb.admin_user.password") %>') WHERE user='root';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '<%= p("mariadb.admin_user.password") %>' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
-
 CREATE USER 'keystone'@'localhost' IDENTIFIED BY 'swiftstack';
 CREATE DATABASE IF NOT EXISTS keystone CHARACTER SET utf8 COLLATE utf8_general_ci;
 use keystone;
 GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' IDENTIFIED BY 'swiftstack' WITH GRANT OPTION;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`webconfig` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
-/*
+USE `webconfig`;
 
- Source Server Type    : MySQL
- Source Server Version : 100122
- Source Schema         : portaldb
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
- Target Server Type    : MySQL
- Target Server Version : 100122
- File Encoding         : 65001
+-- ----------------------------
+-- Table structure for answer
+-- ----------------------------
+DROP TABLE IF EXISTS `infra_config`;
+CREATE TABLE `infra_config`  (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `api_uri` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `uaa_uri` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `authorization` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `caas_api_uri` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `caas_authorization` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
- Date: 11/07/2018 14:59:48
-*/
+-- ----------------------------
+-- Records of infra_config
+-- ----------------------------
+INSERT INTO `infra_config` VALUES (1, '<%= p("portal_default.name") %>', '<%= p("portal_default.url") %>', '<%= p("portal_default.uaa_url") %>', '<%= p("portal_default.header_auth") %>', '<%= p("portal_default.desc") %>', '', '');
+
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`portaldb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
 USE `portaldb`;
@@ -150,7 +164,6 @@ CREATE TABLE `catalog_history` (
   `lastmodified` datetime DEFAULT NULL,
   PRIMARY KEY (`no`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2721 DEFAULT CHARSET=utf8;
-
 
 -- ----------------------------
 -- Table structure for code_detail
@@ -351,8 +364,6 @@ CREATE TABLE `invite_user` (
   `invite_name` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
-
-
 
 -- ----------------------------
 -- Table structure for menu
@@ -623,7 +634,7 @@ CREATE TABLE `user_detail` (
 -- Records of user_detail
 -- ----------------------------
 BEGIN;
-INSERT INTO `user_detail` VALUES ('admin', '1', '', '', '서울 특별시 마포구 마포대로 38 2층 202호', NULL, 'admin', 'Y', NULL, 0, NULL, 'http://115.68.46.218:10008/v1/KEY_eb08842a2fbc414c9d537006912705b2/portal-container/ce40ee519709419ea985f201dc0ec716-1533021594365-YTk0MjE2ODQwNjI3MjZlNjMwMGUyMWIyMjllYjNhNTcuZ2lm', 'Y');
+INSERT INTO `user_detail` VALUES ('admin', '1', '', '', 'PaaS-TA', NULL, 'admin', 'Y', NULL, 0, NULL, 'http://115.68.46.218:10008/v1/KEY_eb08842a2fbc414c9d537006912705b2/portal-container/ce40ee519709419ea985f201dc0ec716-1533021594365-YTk0MjE2ODQwNjI3MjZlNjMwMGUyMWIyMjllYjNhNTcuZ2lm', 'Y');
 COMMIT;
 
 -- ----------------------------
@@ -641,6 +652,3 @@ CREATE TABLE `web_ide_user` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;
-
-
-

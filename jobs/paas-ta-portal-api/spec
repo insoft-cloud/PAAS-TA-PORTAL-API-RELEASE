@@ -13,10 +13,7 @@ packages:
   - paas-ta-portal-api
 
 provides:
-  - name: paas-ta-portal-api-link 
-    type: paas-ta-portal-api 
-    properties: 
-    - server.port
+  - {name: paas-ta-portal-api-link, type: paas-ta-portal-api, properties: [server.port, cloudfoundry.cc.api.url, cloudfoundry.cc.api.uaaUrl, cloudfoundry.cc.api.sslSkipValidation, cloudfoundry.user.admin.username, cloudfoundry.user.admin.username, cloudfoundry.user.admin.password, cloudfoundry.user.uaaClient.clientId, cloudfoundry.user.uaaClient.clientId, cloudfoundry.user.uaaClient.clientSecret, cloudfoundry.user.uaaClient.adminClientId, cloudfoundry.user.uaaClient.adminClientSecret, cloudfoundry.user.uaaClient.loginClientId, cloudfoundry.user.uaaClient.loginClientSecret, cloudfoundry.user.uaaClient.skipSSLValidation, cloudfoundry.authorization, abacus.url, monitoring.api.url]}
 
 consumes:
   - name: paas-ta-portal-registration-link
@@ -28,9 +25,16 @@ properties:
   java_opts:
     description: 'Luncher Java option'
     default: '-Xms512m -Xmx1024m -XX:ReservedCodeCacheSize=240m -XX:+UseCompressedOops -Dfile.encoding=UTF-8 -XX:+UseConcMarkSweepGC -XX:SoftRefLRUPolicyMSPerMB=50 -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -Xverify:none -XX:ErrorFile=/var/vcap/sys/log/java_error_in_idea_%p.log -XX:HeapDumpPath=/var/vcap/sys/log/java_error_in_idea.hprof'
+  infra.admin.enable:
+    description: 'Change it to true only if an infra-admin has been created.'
+    default: false
   server.port:
     description: 'Enter the Service Port'
     default: '2222'
+  cloudfoundry.cc.api.url:
+    description: 'Please enter the cloud foundry api url.'
+  cloudfoundry.cc.api.uaaUrl:
+    description: 'Please enter the cloud foundry uaa url.'
   cloudfoundry.cc.api.sslSkipValidation:
     description: 'Change to true if cloud foundry api uses ssl.'
     default: true
@@ -61,8 +65,6 @@ properties:
     default: true
   cloudfoundry.authorization:
     default: 'cf-Authorization'
-  cloudfoundry.domain:
-    description: 'cloudfoundry domain'
   abacus.url:
     description: 'Please enter the abacus api url.'
     default: 'http://localthost'

@@ -17,7 +17,7 @@ datasource:
     password: <%= p('datasource.cc.password')%>
   portal:
     driver-class-name: <%= p('datasource.portal.driver-class-name')%>
-    url: jdbc:mysql://<%= link('mariadb-link').instances[0].address %>:<%=link('mariadb-link').p('mariadb.port') %>/portaldb
+    url: jdbc:mysql://database.service.portalapi.internal:<%=link('mariadb-link').p('mariadb.port') %>/portaldb
     username: <%= p('datasource.portal.username')%>
     password: <%= p('datasource.portal.password')%>
   uaa:
@@ -63,6 +63,7 @@ paasta:
         storageapi: http://<%= link('paas-ta-portal-gateway-link').instances[0].address %>:<%= link('paas-ta-portal-gateway-link').p('server.port') %>/storageapi
     storageapi:
       type: swift
+
 
 # Discovery Server Access
 eureka:

@@ -14,19 +14,32 @@ packages:
   - haproxy
 
 provides:
-  - {name: haproxy-link, type: haproxy, properties: [infra.admin.enable]}
+  - name: haproxy-link
+    type: haproxy
+    properties: []
 
 consumes:
   - name: paas-ta-portal-registration-link
     type: paas-ta-portal-registration
   - name: paas-ta-portal-gateway-link
     type: paas-ta-portal-gateway
-  - name: mariadb-link
-    type: mariadb
+  - name: paas-ta-portal-webuser-link
+    type: paas-ta-portal-webuser
+  - name: paas-ta-portal-webadmin-link
+    type: paas-ta-portal-webadmin
   - name: paas-ta-portal-log-api-link
     type: paas-ta-portal-log-api
+  - name: mariadb-link
+    type: mariadb
+
 
 properties:
-  infra.admin.enable:
-    description: 'Change it to true only if an infra-admin has been created.'
-    default: false
+  web-user-subdomain:
+    description: 'web user subdomain'
+    default: 'portal-web-user'
+  web-admin-subdomain:
+    description: 'web admin subdomain'
+    default: 'portal-web-admin'
+  web-eureka-subdomain:
+    description: 'eureka subdomain'
+    default: 'portal-registration'

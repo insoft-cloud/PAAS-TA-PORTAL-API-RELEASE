@@ -1,4 +1,4 @@
-bosh create-release --sha2 --force --tarball ./paasta-portal-api-release-2.0.tgz --name paasta-portal-api-release --version 2.1
+bosh create-release --sha2 --force --tarball ./paasta-portal-release-1.0.tgz --name paasta-portal-release --version 1.0
 
 
-bosh upload-release ./paasta-portal-api-release-2.0.tgz
+bosh upload-release ./paasta-portal-release-1.0.tgz

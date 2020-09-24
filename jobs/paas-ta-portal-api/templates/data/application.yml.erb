@@ -22,8 +22,8 @@ management:     # If you set off security...
 cloudfoundry:
   cc:
     api:
-      url: https://api.<%= p('cloudfoundry.domain')%>
-      uaaUrl: https://uaa.<%= p('cloudfoundry.domain')%>
+      url: <%= p('cloudfoundry.cc.api.url')%>
+      uaaUrl: <%= p('cloudfoundry.cc.api.uaaUrl')%>
       sslSkipValidation: <%= p('cloudfoundry.cc.api.sslSkipValidation')%>
   # CloudFoundry Login information
   user:
@@ -52,7 +52,6 @@ monitoring:
 multipart:
   maxFileSize: 1000Mb
   maxRequestSize: 1000Mb
-
 
 
 paasta:

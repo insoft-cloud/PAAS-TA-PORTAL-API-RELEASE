@@ -17,28 +17,38 @@ stats uri /admin
 frontend http-in
 mode http
 bind *:80
-acl portalregistration hdr_beg(host) -i portal-registration.
-<% if p("infra.admin.enable") %>
-acl portalinfraadmin hdr_beg(host) -i portal-infra-admin.
-<% end %>
-<% if p("infra.admin.enable") %>
-use_backend infraadmin_servers if portalinfraadmin
-<% end %>
+acl portalwebuser hdr_beg(host) -i <%= p('web-user-subdomain') %>.
+acl portalwebadmin hdr_beg(host) -i <%= p('web-admin-subdomain') %>.
+acl portalregistration hdr_beg(host) -i <%= p('web-eureka-subdomain') %>.
+
+use_backend http_server if portalwebuser
 use_backend eurekaserver_server if portalregistration
 # domain in redirect setting - End
-    
 
-<% if p("infra.admin.enable") %>
-backend infraadmin_servers
+backend http_server
 mode http
-server server-1 <%= link('paas-ta-portal-infra-admin-link').instances[0].address%>:<%= link('paas-ta-portal-infra-admin-link').p('server.port') %>
+<% link("paas-ta-portal-webuser-link").instances.map do |instance| %>
+  server server-<%= instance.index %> <%= instance.address %>:<%= link('paas-ta-portal-webuser-link').p('server.port') %>
+<% end %>
+
+backend webadmin_servers
+mode http
+<% link("paas-ta-portal-webadmin-link").instances.map do |instance| %>
+  server server-<%= instance.index %> <%= instance.address %>:<%= link('paas-ta-portal-webadmin-link').p('server.port') %>
 <% end %>
 
 backend eurekaserver_server
 mode http
-server server-1 <%= link('paas-ta-portal-registration-link').instances[0].address%>:<%= link('paas-ta-portal-registration-link').p('server.port') %>
+<% link("paas-ta-portal-registration-link").instances.map do |instance| %>
+  server server-<%= instance.index %> <%= instance.address %>:<%= link('paas-ta-portal-registration-link').p('server.port') %>
+<% end %>
 
-
+listen logapi-in
+bind *:5555
+mode tcp
+<% link("paas-ta-portal-log-api-link").instances.map do |instance| %>
+  server server-<%= instance.index %> <%= instance.address %>:5555
+<% end %>
 
 
 frontend http-in-gatewayserver
@@ -48,10 +58,9 @@ default_backend gatewayserver_server
 
 backend gatewayserver_server
 mode http
-server server-1 <%= link('paas-ta-portal-gateway-link').instances[0].address %>:<%= link('paas-ta-portal-gateway-link').p('server.port') %>
-
-
-
+<% link("paas-ta-portal-gateway-link").instances.map do |instance| %>
+  server server-<%= instance.index %> <%= instance.address %>:<%= link('paas-ta-portal-gateway-link').p('server.port') %>
+<% end %>
 
 # MARIA_DB
 listen mariadb-in
@@ -62,21 +71,19 @@ mode tcp
 <% end %>
 
 
-listen logapi-in
-bind *:5555
-mode tcp
-<% link("paas-ta-portal-log-api-link").instances.map do |instance| %>
-  server server-<%= instance.index %> <%= instance.address %>:5555
-<% end %>
 
 # IP:Port in redirect setting - Start
 
-<% if p("infra.admin.enable") %>
-frontend http-in-infraadmin
+
+frontend http-in-8080
 mode http
-bind *:<%= link('paas-ta-portal-infra-admin-link').p('server.port') %>
-default_backend infraadmin_servers
-<% end %>
+bind *:8080
+default_backend http_server
+
+frontend http-in-webadmin
+mode http
+bind *:<%= link('paas-ta-portal-webadmin-link').p('server.port') %>
+default_backend webadmin_servers
 
 frontend http-in-eurekaserver
 mode http
