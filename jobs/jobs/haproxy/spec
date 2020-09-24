@@ -1,0 +1,45 @@
+---
+name: haproxy
+templates:
+  bin/haproxy_ctl.erb: bin/haproxy_ctl
+  bin/pre-start: bin/pre-start
+  config/haproxy/haproxy.cfg.erb: config/haproxy/haproxy.cfg
+  data/properties.sh.erb: data/properties.sh
+  helper/ctl_utils.sh: helper/ctl_utils.sh
+  helper/ctl_setup.sh: helper/ctl_setup.sh
+  helper/monit_debugger: helper/monit_debugger
+
+packages:
+  - java
+  - haproxy
+
+provides:
+  - name: haproxy-link
+    type: haproxy
+    properties: []
+
+consumes:
+  - name: paas-ta-portal-registration-link
+    type: paas-ta-portal-registration
+  - name: paas-ta-portal-gateway-link
+    type: paas-ta-portal-gateway
+  - name: paas-ta-portal-webuser-link
+    type: paas-ta-portal-webuser
+  - name: paas-ta-portal-webadmin-link
+    type: paas-ta-portal-webadmin
+  - name: paas-ta-portal-log-api-link
+    type: paas-ta-portal-log-api
+  - name: mariadb-link
+    type: mariadb
+
+
+properties:
+  web-user-subdomain:
+    description: 'web user subdomain'
+    default: 'portal-web-user'
+  web-admin-subdomain:
+    description: 'web admin subdomain'
+    default: 'portal-web-admin'
+  web-eureka-subdomain:
+    description: 'eureka subdomain'
+    default: 'portal-registration'

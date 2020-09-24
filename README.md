@@ -1,14 +1,15 @@
-# PAAS-TA-PORTAL-API-RELEASE
-[DM프로젝트용] bosh 2.0 PAAS-TA-PORTAL-API-RELEASE <br>
+# PAAS-TA-PORTAL-RELEASE
+
+[대민 프로젝트] bosh 2.0 PAAS-TA-PORTAL-API-RELEASE <br>
 
 Notices
 ---
-- paasta-portal-api, paasta-portal-ui 통합
+- CVE
 - Use PAAS-TA-PORTAL-API-RELEASE = v.1.0.0
 - Use PAAS-TA-PORTAL-RELEASE >= v.1.0.1
 <br>
 
-PaaS-TA Portal API Release Configuration
+PaaS-TA Portal Release Configuration
 ---
 - binary_storage : 1 machine
 - haproxy : 1 machine
@@ -22,21 +23,27 @@ PaaS-TA Portal API Release Configuration
 - paas-ta-portal-webuser : 1 machine
 - paas-ta-portal-webadmin : 1 machine
 
-Create PaaS-TA Portal API Release
+Create PaaS-TA Portal Release
 ---
 - Download the latest PORTAL Release
 ```
-https://github.com/insoft-cloud/PAAS-TA-PORTAL-API-RELEASE.git
+https://github.com/insoft-cloud/PAAS-TA-PORTAL-RELEASE.git
 ```
 
 - Download & Copy "source files" into the src directory
 ```
 ## unzip download source files
 $ unzip src.zip -d <src dircetory path>/
-  : @JANDI 드라이브(파일명 : PAAS-TA-PORTAL-API-RELEASE-src)
+  : @JANDI 드라이브(파일명 : PAAS-TA-PORTAL-RELEASE)
 
-## final src directory   
+## final src directory    
 src   
+  ├── apache2   
+  │   ├── apr-1.7.0.tar.gz   
+  │   ├── apr-util-1.6.1.tar.gz   
+  │   ├── expat-2.2.8.tar.gz   
+  │   ├── httpd-2.4.46.tar.gz   
+  │   └── pcre-8.43.tar.gz 
   ├── haproxy   
   │   └── haproxy-1.6.5.tar.gz   
   ├── java   
@@ -69,7 +76,7 @@ src
 
 - Create PaaS-TA Portal Release
 ```
-## <VERSION> :: release version (e.g. 1.0.1)   
+## <VERSION> :: release version (e.g. 2.0.0)   
 ## <RELEASE_TARBALL_PATH> :: release file path (e.g. /home/ubuntu/workspace/paasta-portal-release-<VERSION>.tgz)   
 $ bosh -e <bosh_name> create-release --name=paasta-portal-release --sha2 --version=<VERSION> --tarball=<RELEASE_TARBALL_PATH> --force   
 ```
