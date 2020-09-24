@@ -7,7 +7,6 @@ Notices
 - CVE
 - Use PAAS-TA-PORTAL-API-RELEASE = v.1.0.0
 - Use PAAS-TA-PORTAL-RELEASE >= v.1.0.1
-<br>
 
 PaaS-TA Portal Release Configuration
 ---
