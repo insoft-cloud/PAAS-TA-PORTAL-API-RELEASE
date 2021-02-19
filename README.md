@@ -1,12 +1,21 @@
 # PAAS-TA-PORTAL-RELEASE
 
-[대민 프로젝트] bosh 2.0 PAAS-TA-PORTAL-API-RELEASE <br>
+[대민 프로젝트] bosh 2.2 PAAS-TA-PORTAL-API-RELEASE <br>
 
 Notices
 ---
 - CVE
 - Use PAAS-TA-PORTAL-API-RELEASE = v.1.0.0
 - Use PAAS-TA-PORTAL-RELEASE >= v.1.0.1
+- 각 api 별 spring boot 및 lib 버전 업그레이드, log file 반영
+- DB Hikari Connection Pool size 50으로 사이즈 업
+- portal web user 메모리(space별) 수정 반영
+- portal web admin 메인 화면 버그 수정 반영
+   
+※ 특이사항
+---
+- spring cloud zuul, ribbon의 경우 spring boot 지원 버전 제한이 있음.(2.0.0.RELEASE 이상 2.4.0.M1 미만)   
+  - spring boot 가장 최신 버전 2.4.2는 불가하여 paas-ta-portal-gateway 프로젝트는 spring boot 버전을 2.3.8.RELEASE로, spring cloud 버전을 Hoxton.SR8로 낮춤.
 
 PaaS-TA Portal Release Configuration
 ---

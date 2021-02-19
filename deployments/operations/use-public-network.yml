@@ -1,0 +1,21 @@
+---
+#- type: replace
+#  path: /instance_groups/name=haproxy/networks/name=((internal_networks_name))
+#  value:
+#    name: ((internal_networks_name))
+
+- type: replace
+  path: /instance_groups/name=haproxy/networks/name=((external_networks_name))
+  value:
+    name: ((external_networks_name))
+    default: [dns, gateway]
+    static_ips: ((haproxy_public_ip))
+
+#- type: replace
+#  path: /instance_groups/name=paas-ta-portal-webadmin/networks/0/default?
+#- type: replace
+
+- type: replace
+  path: /instance_groups/name=paas-ta-portal-webadmin/networks/name=((internal_networks_name))
+  value:
+    name: ((internal_networks_name))

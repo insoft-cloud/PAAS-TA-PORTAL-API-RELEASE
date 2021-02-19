@@ -84,3 +84,9 @@ properties:
     description: 'Please enter a title to use.'
   datasource.cc.url:
     description: 'cloudfoundry database'
+  datasource.hikari.maximum-pool-size:
+    description: 'maximum connection pool size'
+    default: '50'
+  logging.level.ROOT:
+    description: 'logging level'
+    default: 'INFO'

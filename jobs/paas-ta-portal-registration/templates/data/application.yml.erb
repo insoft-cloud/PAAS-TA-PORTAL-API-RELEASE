@@ -5,7 +5,8 @@ spring:
 management:     # If you set off security...
   security:
     enabled: false
-
+  main:
+    allow-bean-definition-overriding: true
 # Configure this Discovery Server
 eureka:
   server:
@@ -25,3 +26,10 @@ eureka:
 
 server:
   port: <%= p('server.port')%>
+
+logging:
+  level:
+    ROOT: <%=p('logging.level.ROOT')%>
+  file:
+    path: classpath:logback-spring.xml
+    name: logs/application.log

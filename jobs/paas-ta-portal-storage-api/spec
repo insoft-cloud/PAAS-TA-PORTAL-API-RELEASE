@@ -50,3 +50,6 @@ properties:
   objectStorage.swift.container:
     description: 'Enter the container'
     default: 'portal-container'
+  logging.level.ROOT:
+    description: 'logging level'
+    default: 'INFO' 

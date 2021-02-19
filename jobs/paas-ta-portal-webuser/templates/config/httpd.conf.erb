@@ -105,9 +105,16 @@ LoadModule slotmem_shm_module modules/mod_slotmem_shm.so
 # It is usually good practice to create a dedicated user and group for
 # running httpd, as with most system services.
 #
-<IfModule unixd_module>
-  User vcap
-  Group vcap
+#<IfModule unixd_module>
+#  User vcap
+#  Group vcap
+#</IfModule>
+
+<IfModule !mpm_netware_module>
+  <IfModule !mpm_winnt_module>
+    User daemon
+    Group daemon
+  </IfModule>
 </IfModule>
 
 #
@@ -138,10 +145,28 @@ ServerAdmin you@example.com
   Require all denied
 </Directory>
 
+#<VirtualHost *:<%= p('server.port')%>>
+#  ProxyRequests Off
+#  ProxyVia Off
+#  ProxyPreserveHost On
+#</VirtualHost>
+
+#VirtualHost *:<%= p('server.port')%>>
+# ProxyRequests Off
+# ProxyVia Off
+# ProxyPreserveHost On
+# ProxyPass /portalapi http://<%= link('paas-ta-portal-gateway-link').instances[0].address %>:<%= link('paas-ta-portal-gateway-link').p('server.port') %>/portalapi
+# ProxyPass /commonapi http://<%= link('paas-ta-portal-gateway-link').instances[0].address %>:<%= link('paas-ta-portal-gateway-link').p('server.port') %>/commonapi
+# ProxyPass /storageapi http://<%= link('paas-ta-portal-gateway-link').instances[0].address %>:<%= link('paas-ta-portal-gateway-link').p('server.port') %>/storageapi
+#/VirtualHost>
+
 <VirtualHost *:<%= p('server.port')%>>
   ProxyRequests Off
   ProxyVia Off
   ProxyPreserveHost On
+  ProxyPass /portalapi <%= p('api.url') %>/portalapi
+  ProxyPass /commonapi <%= p('api.url') %>/commonapi
+  ProxyPass /storageapi <%= p('api.url') %>/storageapi
 </VirtualHost>
 
 #

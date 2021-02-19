@@ -47,4 +47,6 @@ properties:
     default: '3306'
   mariadb.admin_user.password:
     description: 'mariadb root password'
-    
+  logging.level.ROOT:
+    description: 'logging level'
+    default: 'INFO'  

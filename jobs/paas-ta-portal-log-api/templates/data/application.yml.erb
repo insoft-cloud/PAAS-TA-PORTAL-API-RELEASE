@@ -64,3 +64,10 @@ paasta:
         storageapi: http://<%= link('paas-ta-portal-gateway-link').instances[0].address %>:<%= link('paas-ta-portal-gateway-link').p('server.port') %>/storageapi
     storageapi:
       type: swift
+
+logging:
+  level:
+    ROOT: <%=p('logging.level.ROOT')%>
+  file:
+    path: classpath:logback-spring.xml
+    name: logs/application.log

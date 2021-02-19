@@ -25,3 +25,6 @@ properties:
   server.port:
     description: 'Enter the Service Port'
     default: '2221'
+  logging.level.ROOT:
+    description: 'logging level'
+    default: 'INFO'

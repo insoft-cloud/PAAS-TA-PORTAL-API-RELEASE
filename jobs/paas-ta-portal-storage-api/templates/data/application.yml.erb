@@ -44,10 +44,20 @@ objectStorage:
     authMethod: <%= p('objectStorage.swift.authMethod')%>
     preferredRegion: <%= p('objectStorage.swift.preferredRegion')%>
     container: <%= p('objectStorage.swift.container')%>
-
+    user:
+      app:
+        size:
+          mb: 0
 paasta:
   portal:
     storage:
       api:
         common:
           countoflastestexception: 10
+
+logging:
+  level:
+    ROOT: <%=p('logging.level.ROOT')%>
+  file:
+    path: classpath:logback-spring.xml
+    name: logs/application.log

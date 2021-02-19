@@ -71,3 +71,6 @@ properties:
   monitoring.api.url:
     description: 'Please enter the monitoring api url.'
     default: 'http://localthost'
+  logging.level.ROOT:
+    description: 'logging level'
+    default: 'INFO'

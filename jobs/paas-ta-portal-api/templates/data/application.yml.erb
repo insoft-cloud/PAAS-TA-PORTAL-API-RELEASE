@@ -77,3 +77,10 @@ eureka:
     hostname: <%= spec.address %>
     lease-expiration-duration-in-seconds: 5
     lease-renewal-interval-in-seconds: 10
+
+logging:
+  level:
+    ROOT: <%=p('logging.level.ROOT')%>
+  file:
+    path: classpath:logback-spring.xml
+    name: logs/application.log

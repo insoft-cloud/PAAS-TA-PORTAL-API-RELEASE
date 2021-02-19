@@ -15,11 +15,13 @@ templates:
   config/config.json.erb: config/config.json
 
 provides:
-  - {name: paas-ta-portal-webuser-link, type: paas-ta-portal-webuser, properties: [logPath, webDir, server.port, cf.uaa.clientsecret, monitoring, quantity, automaticApproval, cf_api_version, webadmin_ips]}
+  - {name: paas-ta-portal-webuser-link, type: paas-ta-portal-webuser, properties: [api.url, logPath, webDir, server.port, cf.uaa.clientsecret, monitoring, quantity, automaticApproval, cf_api_version, webadmin_ips]}
 
 consumes:
   - name: webadmin-link
     type: paas-ta-portal-webadmin
+  - name: paas-ta-portal-gateway-link
+    type: paas-ta-portal-gateway
 
 properties:
   logPath:
@@ -47,3 +49,7 @@ properties:
   webadmin_ips:
     description: 'webadmin ips'
     default: 'localhost'
+  api.url:
+    description: 'Enter the Service Port'
+    default: ''
+

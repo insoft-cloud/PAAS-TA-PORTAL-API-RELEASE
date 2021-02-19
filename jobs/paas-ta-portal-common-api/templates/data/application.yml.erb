@@ -4,25 +4,28 @@ spring:
   security:
     username: admin
     password: openpaasta
+  main:
+    allow-bean-definition-overriding: true
+
 server:
   port: <%= p('server.port')%>
 
-
-
 datasource:
+  hikari:
+    maximum-pool-size: <%= p('datasource.hikari.maximum-pool-size')%>
   cc:
     driver-class-name: <%= p('datasource.cc.driver-class-name')%>
-    url: <%= p('datasource.cc.url')%>
+    jdbc-url: <%= p('datasource.cc.url')%>
     username: <%= p('datasource.cc.username')%>
     password: <%= p('datasource.cc.password')%>
   portal:
     driver-class-name: <%= p('datasource.portal.driver-class-name')%>
-    url: jdbc:mysql://database.service.portalapi.internal:<%=link('mariadb-link').p('mariadb.port') %>/portaldb
+    jdbc-url: jdbc:mysql://database.service.portalapi.internal:<%=link('mariadb-link').p('mariadb.port') %>/portaldb
     username: <%= p('datasource.portal.username')%>
     password: <%= p('datasource.portal.password')%>
   uaa:
     driver-class-name: <%= p('datasource.uaa.driver-class-name')%>
-    url: <%= p('datasource.uaa.url')%>
+    jdbc-url: <%= p('datasource.uaa.url')%>
     username: <%= p('datasource.uaa.username')%>
     password: <%= p('datasource.uaa.password')%>
 jpa:
@@ -75,3 +78,10 @@ eureka:
     hostname: <%= spec.address %>
     lease-expiration-duration-in-seconds: 5
     lease-renewal-interval-in-seconds: 10
+
+logging:
+  level:
+    ROOT: <%=p('logging.level.ROOT')%>
+  file:
+    path: classpath:logback-spring.xml
+    name: logs/application.log

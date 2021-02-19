@@ -63,3 +63,6 @@ properties:
     description: 'cloudfoundry domain'
   cloudfoundry.authorization:
     default: 'cf-Authorization'
+  logging.level.ROOT:
+    description: 'logging level'
+    default: 'INFO'

@@ -1,0 +1,89 @@
+#release setting 
+releases_name: "paasta-portal-release"
+
+#stemcell setting
+stemcell_os: "ubuntu-xenial"
+stemcell_version: "latest"
+stemcell_alias: "default"
+
+#paasta dependency
+paasta_deployment_name: "paasta"
+paasta_network_name: "paasta"
+paasta_public_haproxy_network_name: "paasta"
+paasta_domain: "paasta_domain"
+cc_db_id: "cloud_controller"
+cc_db_password: "cc_db_password"
+uaa_db_id: "uaa"
+uaa_db_password: "uaa_db_password"
+
+#network setting
+internal_networks_name: "paasta"
+external_networks_name: "paasta"    #use-haproxy-public options....
+haproxy_public_ip: "xxx.xxx.xxx.xxx"  #haproxy-public ip
+
+#flavor setting
+vm_type_tiny: "1C-2G-20GB"
+vm_type_small: "1C-4G-20GB"
+vm_type_medium: "1C-4G-20GB"
+
+#portal haproxy setting
+web-user-subdomain: "console"
+web-admin-subdomain: "console-admin"
+web-eureka-subdomain: "console-registration"
+
+#portal database setting
+mariadb_disk_type: "20GB"
+mariadb_port: "3306"
+mariadb_user_password: "password"
+
+#portal database setting
+default_webadmin_ip: "xxx.xxx.xxx.xxx"
+
+#portal storage setting
+binary_storage_disk_type: "50GB"
+binary_storage_username: "paasta-portal"
+binary_storage_password: "paasta"
+binary_storage_tenantname: "paasta-portal"
+binary_storage_email: "paasta@naver.com"
+
+
+#portal webadmin database(config) setting
+default_portal_api_url: "http://xxx.xxx.xxx.xxx:2225"
+default_portal_api_name: "PaaS-TA"
+default_portal_uaa_url: "https://uaa.<cf-domain>"
+default_portal_header_auth: "Basic YWRtaW46b3BlbnBhYXN0YQ=="
+default_portal_api_desc: "PaaS-TA 5.0 install infra"
+
+#cloudfoundry setting
+cf_admin_password: "admin"
+cf_uaa_admin_client_secret: "admin-secret"
+
+#user portal, abacus, paasta-monitoring setting
+paas_ta_web_user_url: "http://console.<cf-domain>"
+abacus_url: "http://abacus.console.<cf-domain>"
+monitoring_api_url: "http://console.<cf-domain>/:8080"
+
+#mail smtp setting
+mail_smtp_host: "smtp.gmail.com"
+mail_smtp_port: "465"
+mail_smtp_username: "smtp_user_name"
+mail_smtp_password: "smtp_password"
+mail_smtp_useremail: "smtp_usermail@gmail.com"
+mail_smtp_properties_auth: "true"
+mail_smtp_properties_starttls_enable: "true"
+mail_smtp_properties_starttls_required: "true"
+mail_smtp_properties_subject: "PaaS-TA User Potal"
+
+portal_webuser_monitoring: false
+portal_webuser_quantity: false
+portal_webuser_automaticapproval: false
+portalclinet_secret: clientsecret
+
+#spirng admin setting(not true)
+infra_admin: false
+
+#logging level root(common)
+logging_level_root: INFO
+
+# connection pool size
+maximum_pool_size: "50"

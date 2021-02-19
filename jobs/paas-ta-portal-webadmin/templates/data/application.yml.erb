@@ -18,6 +18,8 @@ spring:
           read-timeout: 5000
         metadata-keys-to-sanitize: .password$,.*secret$,.*key$,.$token$,.credentials.,.*vcap_services$
 <% end %>
+  main:
+    allow-bean-definition-overriding: true
   thymeleaf:
     cache: true # false : 서버 재시작 없이 새로고침.  개발서버 이상부터는 true로 설정.
 
@@ -90,3 +92,7 @@ paasta:
 logging:
   level:
     org.openpaas.paasta.portal.web.admin.exception.GlobalControllerExceptionHandler: DEBUG
+    ROOT: <%=p('logging.level.ROOT')%>
+  file:
+    path: classpath:logback-spring.xml
+    name: logs/application.log
