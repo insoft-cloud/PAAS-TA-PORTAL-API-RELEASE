@@ -35,14 +35,16 @@ Create PaaS-TA Portal Release
 ---
 - Download the latest PORTAL Release
 ```
-https://github.com/insoft-cloud/PAAS-TA-PORTAL-RELEASE.git
+git clone -b v2.2 https://github.com/insoft-cloud/PAAS-TA-PORTAL-RELEASE.git
 ```
 
 - Download & Copy "source files" into the src directory
 ```
 ## unzip download source files
-$ unzip src.zip -d <src dircetory path>/
+$ unzip src-2.2.zip -d <src dircetory path>/
   : @JANDI 드라이브(파일명 : PAAS-TA-PORTAL-RELEASE)
+
+- 아래 directory 중 없는 파일은 src.zip에서 해당하는 파일 사용.
 
 ## final src directory    
 src   
