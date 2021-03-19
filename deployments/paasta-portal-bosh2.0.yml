@@ -189,7 +189,7 @@ instance_groups:
     java_opts: "-Xmx1536m -Xss1M -XX:MaxMetaspaceSize=93382K -XX:ReservedCodeCacheSize=240m -XX:+UseCompressedOops -Djdk.tls.ephemeralDHKeySize=2048 -Dfile.encoding=UTF-8 -XX:+UseConcMarkSweepGC -XX:SoftRefLRUPolicyMSPerMB=50 -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -Xverify:none -XX:ErrorFile=/var/vcap/sys/log/java_error_in_idea_%p.log -XX:HeapDumpPath=/var/vcap/sys/log/java_error_in_idea.hprof"
     datasource:
       hikari:
-        maximum-pool-size: "((maximum_pool_size))"
+        maximumPoolSize: "((maximum_pool_size))"
       cc:
         driver-class-name: com.mysql.cj.jdbc.Driver                         #org.postgresql.Driver
         url: jdbc:mysql://sql-db.service.cf.internal:3306/cloud_controller  #jdbc:postgresql://((cf_db_ips)):((cf_db_port))/cloud_controller
@@ -352,6 +352,8 @@ instance_groups:
       port: 80
     api:
       url: "((default_portal_api_url))"
+    uaa:
+      url: "((default_portal_uaa_url))"
 
 properties:
   mariadb:                                                # MARIA DB SERVER 설정 정보

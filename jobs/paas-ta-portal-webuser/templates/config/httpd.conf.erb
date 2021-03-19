@@ -143,6 +143,7 @@ ServerAdmin you@example.com
   Options FollowSymLinks
   AllowOverride none
   Require all denied
+  LimitRequestBody 50000000
 </Directory>
 
 #<VirtualHost *:<%= p('server.port')%>>
@@ -189,6 +190,7 @@ DocumentRoot "<%= p('webDir')%>"
   AllowOverride all
   FallbackResource index.html
   Require all granted
+  LimitRequestBody 50000000
   <Limit OPTIONS>
     Order deny,allow
     Deny from all
