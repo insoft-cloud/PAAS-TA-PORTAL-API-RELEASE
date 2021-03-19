@@ -1,4 +1,4 @@
-bosh create-release --sha2 --force --tarball ./paasta-portal-release-2.2.tgz --name paasta-portal-release --version 2.2
+bosh create-release --sha2 --force --tarball ./paasta-portal-release-3.0.tgz --name paasta-portal-release --version 3.0
 
 
-bosh upload-release ./paasta-portal-release-2.2.tgz
+bosh upload-release ./paasta-portal-release-3.0.tgz
