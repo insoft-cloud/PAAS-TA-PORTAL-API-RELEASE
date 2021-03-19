@@ -26,6 +26,7 @@ character_set_server = utf8
 max_allowed_packet = 32M
 general_log = 1
 general_log_file = /var/vcap/sys/log/mariadb/mariadb-general.log
+max_connections = 500
 
 # Remove leading # to set options mainly useful for reporting servers.
 # The server defaults are faster for transactions and fast SELECTs.
