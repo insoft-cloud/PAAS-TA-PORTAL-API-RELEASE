@@ -50,6 +50,9 @@ properties:
     description: 'webadmin ips'
     default: 'localhost'
   api.url:
-    description: 'Enter the Service Port'
+    description: 'api server address'
+    default: ''
+  uaa.url:
+    description: 'uaa server address'
     default: ''
 

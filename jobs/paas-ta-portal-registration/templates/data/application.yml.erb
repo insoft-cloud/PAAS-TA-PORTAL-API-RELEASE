@@ -11,6 +11,7 @@ management:     # If you set off security...
 eureka:
   server:
     enableSelfPreservation: true
+    wait-time-in-ms-when-sync-empty: 0
   instance:
     appname: ${spring.application.name}
     hostname: <%= spec.address %>
@@ -30,6 +31,3 @@ server:
 logging:
   level:
     ROOT: <%=p('logging.level.ROOT')%>
-  file:
-    path: classpath:logback-spring.xml
-    name: logs/application.log

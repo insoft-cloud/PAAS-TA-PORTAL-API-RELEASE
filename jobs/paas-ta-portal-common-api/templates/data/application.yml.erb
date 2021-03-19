@@ -12,7 +12,13 @@ server:
 
 datasource:
   hikari:
-    maximum-pool-size: <%= p('datasource.hikari.maximum-pool-size')%>
+    minimumIdle: <%= p('datasource.hikari.maximumPoolSize')%>
+    idleTimeout: 10000
+    connectionTimeout: 30000
+    validationTimeout: 5000
+    maxLifetime: 1000
+    maximumPoolSize: <%= p('datasource.hikari.maximumPoolSize')%>
+    autoCommit: true    
   cc:
     driver-class-name: <%= p('datasource.cc.driver-class-name')%>
     jdbc-url: <%= p('datasource.cc.url')%>
@@ -29,7 +35,7 @@ datasource:
     username: <%= p('datasource.uaa.username')%>
     password: <%= p('datasource.uaa.password')%>
 jpa:
-  database: postgresql
+  database: mysql
   show-sql: true
   hibernate:
     ddl-auto: none
@@ -82,6 +88,3 @@ eureka:
 logging:
   level:
     ROOT: <%=p('logging.level.ROOT')%>
-  file:
-    path: classpath:logback-spring.xml
-    name: logs/application.log

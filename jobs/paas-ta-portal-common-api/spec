@@ -6,6 +6,7 @@ templates:
   bin/monit_debugger: bin/monit_debugger
   data/properties.sh: data/properties.sh
   data/application.yml.erb: data/application.yml
+  config/logback-spring.xml.erb: config/logback-spring.xml
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
 packages:
@@ -84,7 +85,7 @@ properties:
     description: 'Please enter a title to use.'
   datasource.cc.url:
     description: 'cloudfoundry database'
-  datasource.hikari.maximum-pool-size:
+  datasource.hikari.maximumPoolSize:
     description: 'maximum connection pool size'
     default: '50'
   logging.level.ROOT:

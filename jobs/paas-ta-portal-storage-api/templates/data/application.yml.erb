@@ -1,21 +1,15 @@
 spring:
   application:
-      name: PortalStorageApi
+    name: PortalStorageApi
   security:
     username: admin
     password: openpaasta
-    http:    # spring boot 1.x
-      multipart:
-        enabled: true
-        max-file-size: 1024MB
-        max-request-size: 1024MB
-        location: ${java.io.tmpdir}
-    servlet:    # spring boot 2.x
-      multipart:
-        enabled: ${spring.http.multipart.enabled}
-        max-file-size: ${spring.http.multipart.max-file-size}
-        max-request-size: ${spring.http.multipart.max-request-size}
-        location: ${spring.http.multipart.location}
+  servlet:    # spring boot 2.x
+    multipart:
+      enabled: true
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+      location: ${java.io.tmpdir}
 management:     # If you set off security...
   security:
     enabled: false
@@ -58,6 +52,3 @@ paasta:
 logging:
   level:
     ROOT: <%=p('logging.level.ROOT')%>
-  file:
-    path: classpath:logback-spring.xml
-    name: logs/application.log
